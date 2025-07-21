@@ -12,12 +12,15 @@ This system creates interactive 2D visualizations where:
 
 ## Features
 
+- **Web Interface**: Easy-to-use Streamlit web application with CSV upload functionality
 - **Semantic Similarity**: Uses sentence transformers to embed topic descriptions and compute semantic similarity
 - **Dimensionality Reduction**: UMAP or t-SNE to map high-dimensional embeddings to 2D coordinates
 - **Interactive Visualization**: Plotly-based interactive plots with hover details and click functionality
 - **Recommendation System**: Find semantically similar topics within curriculum constraints
 - **Hierarchical Overlay**: Visualize curriculum structure alongside semantic relationships
 - **Multi-level Filtering**: Filter by country, school type, grade, or combinations thereof
+- **Data Validation**: Automatic CSV structure validation with helpful error messages
+- **Download Options**: Export maps as HTML, coordinates as CSV, and similarity matrices
 
 ## Installation
 
@@ -25,7 +28,36 @@ This system creates interactive 2D visualizations where:
 pip install -r requirements.txt
 ```
 
-## Quick Start
+## Quick Start - Web Interface (Recommended)
+
+1. **Start the web application:**
+```bash
+streamlit run create_map.py
+```
+
+2. **Upload your CSV file** through the web interface, or try the sample data
+
+3. **Generate your semantic map** with a single click
+
+The web interface provides:
+- **CSV Upload**: Drag and drop or browse for your topic data
+- **Data Preview**: See your data before processing
+- **Validation**: Automatic checks for required columns and data integrity
+- **Configuration**: Customize map title and hierarchy display
+- **Sample Data**: Try with included example datasets
+- **Download Options**: Export results in multiple formats
+
+### CSV Requirements
+Your CSV file must include these columns:
+- `topic_id`: Unique identifier for each topic
+- `name`: Human-readable display name
+
+Optional but recommended columns:
+- `curriculum_text`: Detailed description for semantic analysis
+- `parent_id`: For hierarchical structure
+- `country`, `school_type`, `grade`: For classification and filtering
+
+## Quick Start - Python API
 
 ```python
 from topic_semantic_map import SemanticTaxonomyVisualizer, create_mock_data
@@ -52,6 +84,8 @@ fig.show()
 recommendations = visualizer.get_recommendations('math_basic_arithmetic')
 print(recommendations)
 ```
+
+For the original command-line interface, use `python create_map_cli.py`
 
 ## Data Format
 
